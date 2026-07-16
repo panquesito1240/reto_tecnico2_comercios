@@ -1,4 +1,4 @@
-package com.reto_tecnico2.api_comercios.dto;
+package com.reto_tecnico2.api_comercios.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

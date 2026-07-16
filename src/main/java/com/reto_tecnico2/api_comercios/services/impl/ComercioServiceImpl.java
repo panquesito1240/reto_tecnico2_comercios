@@ -1,26 +1,35 @@
 package com.reto_tecnico2.api_comercios.services.impl;
 
-import com.reto_tecnico2.api_comercios.dto.ComercioRequestDTO;
-import com.reto_tecnico2.api_comercios.dto.ComercioResponseDTO;
+import com.reto_tecnico2.api_comercios.dto.request.ComercioRequestDTO;
+import com.reto_tecnico2.api_comercios.dto.response.ComercioResponseDTO;
 import com.reto_tecnico2.api_comercios.exception.ResourceNotFoundException;
 import com.reto_tecnico2.api_comercios.models.Comercio;
 import com.reto_tecnico2.api_comercios.repository.ComercioRepository;
 import com.reto_tecnico2.api_comercios.services.ComercioService;
 import com.reto_tecnico2.api_comercios.mapper.ComercioMapper;
+import com.reto_tecnico2.api_comercios.mapper.SedeMapper;
+import com.reto_tecnico2.api_comercios.models.Sede;
+import com.reto_tecnico2.api_comercios.repository.SedeRepository;
+import com.reto_tecnico2.api_comercios.dto.response.SedeResponseDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 public class ComercioServiceImpl implements ComercioService {
 
     private final ComercioRepository comercioRepository;
+    private final SedeRepository sedeRepository;
     private final ComercioMapper comercioMapper;
+    private final SedeMapper sedeMapper;
+
+    @Override
+    public Page<SedeResponseDTO> getSedesByComercioNombre(String nombreComercio, Pageable pageable) {
+        Page<Sede> sedes = sedeRepository.findByComercio_NombreContainingIgnoreCaseAndEstadoTrue(nombreComercio, pageable);
+        return sedes.map(sedeMapper::toResponseDTO);
+    }
 
     @Override
     public Page<ComercioResponseDTO> listarComercios(String nombre, String distrito, Boolean estado, Pageable pageable) {

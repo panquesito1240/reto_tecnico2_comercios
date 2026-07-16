@@ -1,4 +1,4 @@
-package com.reto_tecnico2.api_comercios.dto;
+package com.reto_tecnico2.api_comercios.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

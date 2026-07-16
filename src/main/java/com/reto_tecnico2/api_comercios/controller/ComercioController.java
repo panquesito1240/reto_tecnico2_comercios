@@ -1,8 +1,8 @@
 package com.reto_tecnico2.api_comercios.controller;
 
 import com.reto_tecnico2.api_comercios.dto.ApiResponse;
-import com.reto_tecnico2.api_comercios.dto.ComercioRequestDTO;
-import com.reto_tecnico2.api_comercios.dto.ComercioResponseDTO;
+import com.reto_tecnico2.api_comercios.dto.request.ComercioRequestDTO;
+import com.reto_tecnico2.api_comercios.dto.response.ComercioResponseDTO;
 import com.reto_tecnico2.api_comercios.services.ComercioService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -12,6 +12,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.data.web.PageableDefault;
+import com.reto_tecnico2.api_comercios.dto.response.SedeResponseDTO;
 
 import java.util.List;
 
@@ -26,13 +28,24 @@ public class ComercioController {
     public ResponseEntity<ApiResponse<Page<ComercioResponseDTO>>> listarComercios(
             @RequestParam(required = false) String nombre,
             @RequestParam(required = false) String distrito,
-            @RequestParam(required = false, defaultValue = "true") Boolean estado,
+            @RequestParam(required = false) Boolean estado,
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size
-    ) {
+            @RequestParam(defaultValue = "5") int size) {
+
         Pageable pageable = PageRequest.of(page, size);
-        Page<ComercioResponseDTO> comercios = comercioService.listarComercios(nombre, distrito, estado, pageable);
-        return ResponseEntity.ok(new ApiResponse<>(true, "Comercios obtenidos exitosamente", comercios));
+        Page<ComercioResponseDTO> pageResult = comercioService.listarComercios(nombre, distrito, estado, pageable);
+        return ResponseEntity.ok(new ApiResponse<>(true, "Comercios obtenidos exitosamente", pageResult));
+    }
+
+    @GetMapping("/{nombreComercio}/sedes")
+    public ResponseEntity<ApiResponse<Page<SedeResponseDTO>>> listarSedesPorComercio(
+            @PathVariable String nombreComercio,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "5") int size) {
+
+        Pageable pageable = PageRequest.of(page, size);
+        Page<SedeResponseDTO> pageResult = comercioService.getSedesByComercioNombre(nombreComercio, pageable);
+        return ResponseEntity.ok(new ApiResponse<>(true, "Sedes obtenidas exitosamente", pageResult));
     }
 
     @GetMapping("/{id}")

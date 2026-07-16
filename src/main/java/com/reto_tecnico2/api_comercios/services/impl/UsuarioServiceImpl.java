@@ -1,7 +1,7 @@
 package com.reto_tecnico2.api_comercios.services.impl;
 
-import com.reto_tecnico2.api_comercios.dto.UsuarioRequestDTO;
-import com.reto_tecnico2.api_comercios.dto.UsuarioResponseDTO;
+import com.reto_tecnico2.api_comercios.dto.request.UsuarioRequestDTO;
+import com.reto_tecnico2.api_comercios.dto.response.UsuarioResponseDTO;
 import com.reto_tecnico2.api_comercios.mapper.UsuarioMapper;
 import com.reto_tecnico2.api_comercios.models.Usuario;
 import com.reto_tecnico2.api_comercios.repository.UsuarioRepository;

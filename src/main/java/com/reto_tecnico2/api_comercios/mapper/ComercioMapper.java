@@ -1,7 +1,7 @@
 package com.reto_tecnico2.api_comercios.mapper;
 
-import com.reto_tecnico2.api_comercios.dto.ComercioRequestDTO;
-import com.reto_tecnico2.api_comercios.dto.ComercioResponseDTO;
+import com.reto_tecnico2.api_comercios.dto.request.ComercioRequestDTO;
+import com.reto_tecnico2.api_comercios.dto.response.ComercioResponseDTO;
 import com.reto_tecnico2.api_comercios.models.Comercio;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

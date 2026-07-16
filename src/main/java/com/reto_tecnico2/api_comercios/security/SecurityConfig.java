@@ -18,14 +18,24 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.reto_tecnico2.api_comercios.security.JwtAuthFilter;
+import com.reto_tecnico2.api_comercios.security.JwtAuthenticationEntryPoint;
+
 @Configuration
 @EnableWebSecurity
-@RequiredArgsConstructor
 public class SecurityConfig {
 
     private final JwtAuthFilter jwtAuthFilter;
     private final UserDetailsService userDetailsService;
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+
+    public SecurityConfig(JwtAuthFilter jwtAuthFilter, 
+                          UserDetailsService userDetailsService, 
+                          JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint) {
+        this.jwtAuthFilter = jwtAuthFilter;
+        this.userDetailsService = userDetailsService;
+        this.jwtAuthenticationEntryPoint = jwtAuthenticationEntryPoint;
+    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {

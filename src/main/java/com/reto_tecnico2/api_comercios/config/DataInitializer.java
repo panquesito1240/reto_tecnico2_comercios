@@ -48,6 +48,13 @@ public class DataInitializer implements CommandLineRunner {
             ripley.getSedes().add(crearSede("Miraflores", "Calle Schell 202", ripley));
             ripley.getSedes().add(crearSede("San Isidro", "Las Begonias 543", ripley));
             ripley.getSedes().add(crearSede("Santiago de Surco", "Jockey Plaza", ripley));
+            ripley.getSedes().add(crearSede("San Miguel", "Plaza San Miguel", ripley));
+            ripley.getSedes().add(crearSede("Independencia", "Plaza Norte", ripley));
+            ripley.getSedes().add(crearSede("Ate", "Real Plaza Puruchuco", ripley));
+            ripley.getSedes().add(crearSede("Santa Anita", "Mall Aventura Santa Anita", ripley));
+            ripley.getSedes().add(crearSede("Jesus Maria", "Real Plaza Salaverry", ripley));
+            ripley.getSedes().add(crearSede("Chorrillos", "Plaza Lima Sur", ripley));
+            ripley.getSedes().add(crearSede("Breña", "La Rambla Brasil", ripley));
             comercios.add(ripley);
 
             // Saga Falabella
@@ -60,6 +67,8 @@ public class DataInitializer implements CommandLineRunner {
             saga.getSedes().add(crearSede("San Isidro", "Paseo de la República 3220", saga));
             saga.getSedes().add(crearSede("Miraflores", "Av. José Pardo 130", saga));
             saga.getSedes().add(crearSede("Independencia", "Plaza Norte", saga));
+            saga.getSedes().add(crearSede("Santiago de Surco", "Jockey Plaza", saga));
+            saga.getSedes().add(crearSede("San Miguel", "Plaza San Miguel", saga));
             comercios.add(saga);
 
             // Plaza Vea
@@ -71,6 +80,7 @@ public class DataInitializer implements CommandLineRunner {
                     .build();
             plazaVea.getSedes().add(crearSede("Miraflores", "Av. Arequipa 4651", plazaVea));
             plazaVea.getSedes().add(crearSede("San Borja", "La Rambla", plazaVea));
+            plazaVea.getSedes().add(crearSede("Surco", "C.C. El Polo", plazaVea));
             comercios.add(plazaVea);
 
             // Tottus
@@ -84,17 +94,61 @@ public class DataInitializer implements CommandLineRunner {
             tottus.getSedes().add(crearSede("Surquillo", "Av. Angamos Este 1805", tottus));
             comercios.add(tottus);
 
-            // Algunos genéricos para llenar la paginación
-            for (int i = 5; i <= 15; i++) {
-                Comercio gen = Comercio.builder()
-                        .nombre("Comercio Genérico " + i)
-                        .razonSocial("Genérica " + i + " S.A.C.")
-                        .estado(true)
-                        .sedes(new ArrayList<>())
-                        .build();
-                gen.getSedes().add(crearSede("Lince", "Av. Arenales " + (1000 + i), gen));
-                comercios.add(gen);
-            }
+            // Sodimac
+            Comercio sodimac = Comercio.builder()
+                    .nombre("Sodimac")
+                    .razonSocial("Tiendas del Mejoramiento del Hogar S.A.")
+                    .estado(true)
+                    .sedes(new ArrayList<>())
+                    .build();
+            sodimac.getSedes().add(crearSede("Javier Prado", "Av. Javier Prado Este 1059", sodimac));
+            sodimac.getSedes().add(crearSede("San Miguel", "Av. La Marina 2500", sodimac));
+            comercios.add(sodimac);
+
+            // Metro
+            Comercio metro = Comercio.builder()
+                    .nombre("Metro")
+                    .razonSocial("Cencosud Retail Peru S.A.")
+                    .estado(true)
+                    .sedes(new ArrayList<>())
+                    .build();
+            metro.getSedes().add(crearSede("Breña", "Av. Alfonso Ugarte 1120", metro));
+            metro.getSedes().add(crearSede("San Juan de Lurigancho", "Av. Próceres de la Independencia 1632", metro));
+            metro.getSedes().add(crearSede("Chorrillos", "Av. Huaylas 875", metro));
+            comercios.add(metro);
+
+            // Promart
+            Comercio promart = Comercio.builder()
+                    .nombre("Promart")
+                    .razonSocial("Homecenters Peruanos S.A.")
+                    .estado(true)
+                    .sedes(new ArrayList<>())
+                    .build();
+            promart.getSedes().add(crearSede("Ate", "Av. Separadora Industrial", promart));
+            promart.getSedes().add(crearSede("Pro", "Panamericana Norte Km 22", promart));
+            comercios.add(promart);
+
+            // Wong
+            Comercio wong = Comercio.builder()
+                    .nombre("Wong")
+                    .razonSocial("Cencosud Retail Peru S.A.")
+                    .estado(true)
+                    .sedes(new ArrayList<>())
+                    .build();
+            wong.getSedes().add(crearSede("Miraflores", "Óvalo Gutiérrez", wong));
+            wong.getSedes().add(crearSede("San Isidro", "Av. Dos de Mayo", wong));
+            comercios.add(wong);
+
+            // Makro
+            Comercio makro = Comercio.builder()
+                    .nombre("Makro")
+                    .razonSocial("Supermercados Peruanos S.A.")
+                    .estado(true)
+                    .sedes(new ArrayList<>())
+                    .build();
+            makro.getSedes().add(crearSede("Surco", "Av. Jorge Chávez", makro));
+            makro.getSedes().add(crearSede("Independencia", "Panamericana Norte", makro));
+            comercios.add(makro);
 
             comercioRepository.saveAll(comercios);
             System.out.println("Comercios reales y genéricos insertados exitosamente.");

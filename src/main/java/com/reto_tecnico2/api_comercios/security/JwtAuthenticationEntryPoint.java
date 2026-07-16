@@ -22,7 +22,7 @@ public class JwtAuthenticationEntryPoint implements AuthenticationEntryPoint {
         response.setContentType(MediaType.APPLICATION_JSON_VALUE);
         response.setStatus(HttpServletResponse.SC_UNAUTHORIZED); // 401
         
-        ApiResponse<Void> apiResponse = new ApiResponse<>(false, "Acceso no autorizado: Debes enviar un Token JWT válido", null);
+        ApiResponse<Void> apiResponse = new ApiResponse<>(false, "Acceso no autorizado: Debes enviar un Token JWT válido",null);
         
         ObjectMapper mapper = new ObjectMapper();
         mapper.writeValue(response.getOutputStream(), apiResponse);
